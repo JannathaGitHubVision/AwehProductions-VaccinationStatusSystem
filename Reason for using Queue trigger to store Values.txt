@@ -1,0 +1,11 @@
+NOTE!!
+
+We have a console application. It’s like a messenger, sending messages to a queue. Then, there’s a queue trigger that takes these messages and stores them in Azure Cosmos DB.
+
+Now, we could send these messages directly to Azure Cosmos DB from the console application. But, it takes some time for Azure Cosmos DB to get the message. This delay can slow things down.
+
+Also, if we tried to send messages to both the queue and Azure Cosmos DB at the same time, it would be like trying to do two things at once. It’s hard, confusing, and can lead to mistakes.
+
+So, what we do is use the queue as a middleman. The messages stay there until Azure Cosmos DB is ready to receive them. This way, we avoid the delay and keep things running smoothly. Plus, it’s simpler and doesn’t require as much effort!
+
+So that's the reason why I choose this approach

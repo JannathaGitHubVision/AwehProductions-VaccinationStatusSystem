@@ -1,0 +1,6 @@
+https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-dotnet-get-started?tabs=azure-portal%2Cwindows : azure cosmos DB code
+
+https://youtu.be/I3pm6BrkLjw?si=6DDKqHz9XK74l9tl : How to create a cosmos DB Container and Add items to Container
+
+
+
