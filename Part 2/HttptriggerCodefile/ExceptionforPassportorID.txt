@@ -1,0 +1,99 @@
+/// <summary>
+/// This is for Passport Message Handling only
+/// </summary>
+/// <param name="value"></param>
+/// <returns></returns>
+private static string PassportMessages(string value)
+{
+    string responseMessage;
+    Validation validation = new Validation();
+
+    //this is just opening messages to display this message
+    string dumy = "{param";
+    if (value.Equals(dumy))
+    {
+        // This message is displayed when users access the website.
+        responseMessage =
+            "Welcome to the Vaccination Information Service!\n\n" +
+            "To retrieve your vaccination details, please provide either a Passport or ID number.\n\n" +
+            "--Passport: A valid passport number should have 9 characters, where the first character is an alphabet letter, and the rest should be numbers.\n\n" +
+            "--ID: A valid ID number should be 13 characters long, consisting of numeric characters only.\n\n" +
+            "Example URL format: https://st10053561.azurewebsites.net/api/id/passport_number_or_id_number";
+    }
+    else
+    {
+        //Passport Validation
+        bool checkPassport = validation.CheckStoredPassportlist(value);
+        bool isValidPassport = validation.IsValidPassportList(value);
+
+        //If passport is stored then display that message
+        if (checkPassport)
+        {
+            responseMessage = validation.DisplayPassport(value);
+        }
+        //If user provides the perfect passport format but not stored then display that message
+        else if (isValidPassport)
+        {
+            responseMessage = validation.ValidPassportList(value);
+        }
+        //If passport is not stored then display this message
+        else
+        {
+            responseMessage = "Passport: A valid passport number should have 9 characters, where the first character is an alphabet letter, and the rest should be numbers";
+        }
+
+    }
+
+
+    return responseMessage;
+}
+
+
+/// <summary>
+/// This is for ID Messages Hanlding only
+/// </summary>
+/// <param name="value"></param>
+/// <returns></returns>
+private static string IDMessages(string value)
+{
+    string responseMessage;
+    Validation validation = new Validation();
+
+    string dumy = "{param";
+    if (value.Equals(dumy))
+    {
+        // This message is displayed when users access the website.
+        responseMessage =
+            "Welcome to the Vaccination Information Service!\n\n" +
+            "To retrieve your vaccination details, please provide either a Passport or ID number.\n\n" +
+            "--Passport: A valid passport number should have 9 characters, where the first character is an alphabet letter, and the rest should be numbers.\n\n" +
+            "--ID: A valid ID number should be 13 characters long, consisting of numeric characters only.\n\n" +
+            "Example URL format: https://st10053561.azurewebsites.net/api/id/passport_number_or_id_number";
+    }
+    else
+    {
+        //ID validation
+        bool checkID = validation.CheckStoredIDList(value);
+        bool isValidID = validation.IsValidIDList(value);
+
+
+        //If ID is stored then display that message
+        if (checkID)
+        {
+            responseMessage = validation.DisplayID(value);
+        }
+        //If user provides the perfect ID format but not stored then display that message
+        else if (isValidID)
+        {
+            responseMessage = validation.ValidIDList(value);
+        }
+        //If ID is not stored then display this message
+        else
+        {
+            responseMessage = "ID: A valid ID number should be 13 characters long, consisting of numeric characters only";
+        }
+
+
+    }
+    return responseMessage;
+}

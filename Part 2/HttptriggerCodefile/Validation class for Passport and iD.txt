@@ -1,0 +1,240 @@
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CloudAzurePOE
+{
+    public class Validation
+    {
+
+        private List<VaccinationPassportDetails> ValidPassport = new List<VaccinationPassportDetails>()
+            {
+    new VaccinationPassportDetails("R2345678", "John Smith", DateTime.Parse("2023-08-15"), "Pfizer", 2),
+    new VaccinationPassportDetails("M98765432", "Emily Johnson", DateTime.Parse("2023-06-20"), "Moderna", 2),
+    new VaccinationPassportDetails("S45678901", "Michael Williams", DateTime.Parse("2023-07-01"), "Johnson & Johnson", 1),
+    new VaccinationPassportDetails("A23456789", "Jessica Brown", DateTime.Parse("2023-06-10"), "AstraZeneca", 2),
+    new VaccinationPassportDetails("T98765432", "David Martinez", DateTime.Parse("2023-07-05"), "Moderna", 1)
+            };
+
+        private List<VaccinationIDDetails> ValidId = new List<VaccinationIDDetails>()
+{
+    new VaccinationIDDetails("1234567890123", "Sarah Johnson", DateTime.Parse("2023-08-20"), "Pfizer", 2),
+    new VaccinationIDDetails("9607225921181", "Michael Brown", DateTime.Parse("2023-07-12"), "Moderna", 1),
+    new VaccinationIDDetails("7606175188181", "Emily Smith", DateTime.Parse("2023-06-25"), "Johnson & Johnson", 1),
+    new VaccinationIDDetails("4208074597183", "Daniel Williams", DateTime.Parse("2023-08-05"), "Astra Zeneca", 2),
+    new VaccinationIDDetails("8206124609185", "Jessica Miller", DateTime.Parse("2023-07-18"), "Pfizer", 1)
+};
+
+
+        /// <summary>
+        /// for Checking the ID in a list
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool CheckStoredIDList(string id)
+        {
+            for (int i = 0; i < ValidId.Count; i++)
+            {
+                if (ValidId[i].ID1.Equals(id))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// for checking passport in a list
+        /// </summary>
+        /// <param name="passport"></param>
+        /// <returns></returns>
+        public bool CheckStoredPassportlist(string passport)
+        {
+            for (int v = 0; v < ValidPassport.Count; v++)
+            {
+                if (ValidPassport[v].PassportNumber.Equals(passport) == true)
+                {
+                    return true;
+                }
+
+            }
+            return false;
+
+        }
+
+        public string CheckStoredPassportlist1(string passport)
+        {
+            for (int v = 0; v < ValidPassport.Count; v++)
+            {
+                if (ValidPassport[v].PassportNumber.Equals(passport))
+                {
+                    return "Passport is valid.";
+                }
+            }
+            return "Passport is not valid.";
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// This is for Displaying the values if the ID is matched from a user's value
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        /// <summary>
+        /// it is validation of ID to met certain requriments
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+
+        public bool IsValidIDList(string ID)
+        {
+
+            if (ID == null || ID.Length != 13)
+            {
+                return false;
+            }
+
+            foreach (char c in ID)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        /// <summary>
+        /// The validation for Passport to make sure to met certain requriements
+        /// </summary>
+        /// <param name="passport"></param>
+        /// <returns></returns>
+        public bool IsValidPassportList(string passport)
+        {
+            bool answer = true;
+            if (passport == null || passport.Length != 9 && !char.IsLetter(passport[0]))
+            {
+                return false;
+            }
+            else
+            {
+                for (int i = 1; i < passport.Length; i++)
+                {
+                    if (!char.IsDigit(passport[i]))
+                    {
+
+                        return false;
+                    }
+                }
+            }
+
+            return answer;
+
+        }
+
+
+        /// <summary>
+        /// This is for displaying the Values in a list if it is matches from user's value
+        /// </summary>
+        /// <param name="passport"></param>
+        /// <returns></returns>
+        public string DisplayPassport(string passport)
+        {
+            //Displaying values
+            StringBuilder responseMessage = new StringBuilder();
+            bool check = CheckStoredPassportlist(passport);
+
+            if (check)
+            {
+                foreach (var PassportDetails in ValidPassport)
+                {
+                    if (PassportDetails.PassportNumber.Equals(passport))
+                    {
+                        responseMessage.AppendLine($"You have been vaccinated Successfully.");
+                        responseMessage.AppendLine($"ID:                {PassportDetails.PassportNumber}");
+                        responseMessage.AppendLine($"Name:              {PassportDetails.Name1}");
+                        responseMessage.AppendLine($"Vaccination Date:  {PassportDetails.VaccinationDate.ToString("yyyy-MM-dd")}");
+                        responseMessage.AppendLine($"Vaccine Type:      {PassportDetails.VaccineType}");
+                        responseMessage.AppendLine($"Dose:              {PassportDetails.Dose}");
+                        break;
+                    }
+                }
+
+            }
+
+            return responseMessage.ToString();
+
+        }
+
+
+        public string DisplayID(string id)
+        {
+            //Displaying ID values
+            StringBuilder responseMessage = new StringBuilder();
+
+            foreach (var idDetails in ValidId)
+            {
+                if (idDetails.ID1.Equals(id))
+                {
+                    responseMessage.AppendLine($"You have been vaccinated Successfully.");
+                    responseMessage.AppendLine($"ID:                {idDetails.ID1}");
+                    responseMessage.AppendLine($"Name:              {idDetails.Name1}");
+                    responseMessage.AppendLine($"Vaccination Date:  {idDetails.VaccinationDate.ToString("yyyy-MM-dd")}");
+                    responseMessage.AppendLine($"Vaccine Type:      {idDetails.VaccineType}");
+                    responseMessage.AppendLine($"Dose:              {idDetails.Dose}");
+                    break;
+                }
+            }
+
+            return responseMessage.ToString();
+        }
+
+        /// <summary>
+        /// it is for those who provided correct format but not stored
+        /// </summary>
+        /// <param name="passport"></param>
+        /// <returns></returns>
+        public string ValidPassportList(string passport)
+        {
+            StringBuilder responseMessage = new StringBuilder();
+
+            bool check = IsValidPassportList(passport);
+            if (check)
+            {
+                responseMessage.AppendLine("Your passport is valid, but you have not been vaccinated");
+            }
+            return responseMessage.ToString();
+        }
+
+
+        /// <summary>
+        /// it is for those who provided correct format but not stored 
+        /// </summary>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        public string ValidIDList(string ID)
+        {
+            StringBuilder responseMessage = new StringBuilder();
+
+            bool check = IsValidIDList(ID);
+
+            if (check)
+            {
+                responseMessage.AppendLine("Your ID is valid, but you have not been vaccinated");
+            }
+
+            return responseMessage.ToString();
+        }
+
+
+    }
+}

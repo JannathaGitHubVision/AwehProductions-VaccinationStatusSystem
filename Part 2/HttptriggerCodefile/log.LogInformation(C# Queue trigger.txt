@@ -1,0 +1,24 @@
+            //log.LogInformation("C# Queue trigger function processed a request.");
+             
+            /*      string responseMessage;
+
+                  if (string.IsNullOrEmpty(myQueueItem))
+                  {
+                      responseMessage =
+                          "Welcome to the Vaccination Information Service!\n\n" +
+                          "To retrieve your vaccination details, please provide either a Passport or ID number.\n\n" +
+                          "--Passport: A valid passport number should have 9 characters, where the first character is an alphabet letter, and the rest should be numbers.\n\n" +
+                          "--ID: A valid ID number should be 13 characters long, consisting of numeric characters only.\n\n";
+                  }
+                  else if (char.IsLetter(myQueueItem[0]))
+                  {
+                      responseMessage = PassportMessages(myQueueItem);
+                  }
+                  else
+                  {
+                      responseMessage = IDMessages(myQueueItem);
+                  }
+
+                  log.LogInformation(responseMessage);*/
+
+

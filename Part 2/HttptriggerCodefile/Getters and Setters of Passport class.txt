@@ -1,0 +1,32 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CloudAzurePOE
+{
+    public class VaccinationPassportDetails
+    {
+        private string passportNumber;
+        private string Name;
+        private DateTime vaccinationDate;
+        private string vaccineType;
+        private int dose;
+
+        public VaccinationPassportDetails(string passportNumber, string name, DateTime vaccinationDate, string vaccineType, int dose)
+        {
+            this.passportNumber = passportNumber;
+            Name = name;
+            this.vaccinationDate = vaccinationDate;
+            this.vaccineType = vaccineType;
+            this.dose = dose;
+        }
+
+        public string PassportNumber { get => passportNumber; set => passportNumber = value; }
+        public string Name1 { get => Name; set => Name = value; }
+        public DateTime VaccinationDate { get => vaccinationDate; set => vaccinationDate = value; }
+        public string VaccineType { get => vaccineType; set => vaccineType = value; }
+        public int Dose { get => dose; set => dose = value; }
+    }
+}
