@@ -1,0 +1,5 @@
+Guide for Cloud POE:
+Link : https://st10053561.azurewebsites.net/api/id/%7Bparam?}
+
+Passport No: R2345678 , L2583697
+ID No: 0201016159083 , 0201018435085
