@@ -1,6 +1,6 @@
 # 🌥️ CloudDev_SecondYear
 
-This is a **Cloud Project** developed during my second year, focusing on creating a cloud-based solution for **Aweh Productions**, a local South African company that specializes in hosting smaller musical events. The project aims to develop a prototype for a vaccination status check system that can be used at event entrances.
+This project is part of the second-year coursework for **CLDV6212**, focused on developing cloud-based solutions for **Aweh Productions**, a South African entrepreneurial company specializing in smaller musical events. The project involves creating a secure, scalable system for vaccination status checks at event entrances.
 
 ## 📚 Project Overview
 
